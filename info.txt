@@ -1,0 +1,14 @@
+Tweets Burg
+tweetsburgcs4644@gmail.com
+C$4644final
+
+Twitter:
+Tweetsburg1
+tweetsburgcs4644
+1. To create an interactive website that will aggregate tweets that are sent from the the Virginia Tech campus to display them on a map.
+2. Yes, I plan to analyze the tweets based on geolocation, hashtag, and trending topics.
+3. No. Tweets will only be displayed with the ability to clock them a be redirect to twitter.com
+4.  Tweets will be populated on a 2d map of the Virginia Tech campus as there are sent. The goal is to show what students on campus are thinking about.
+tweets/status/
+
+https://developer.twitter.com/en/docs/tweets/search/api-reference/get-search-tweets
