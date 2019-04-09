@@ -7,10 +7,29 @@ let map = {
   "Moss Art Center": [37.231865, -80.418103],
   "Burruss Hall": [37.229006, -80.423757]
 };
-T.get('search/tweets', { geocode:"" + map["Newman Library"][0] +"," +map["Newman Library"][1] + ",0.13mi", count: 100 }, function(err, data, response) {
-  console.log(data[].length);
-  console.log(data["statuses"][0]['id_str']);
-})
+  let tweets = [];
+// T.get('search/tweets', { geocode:"" + map["Burruss Hall"][0] +"," +map["Burruss Hall"][1] + ",0.07mi", count: 100 }, function(err, data, response) {
+//   let length = data["statuses"].length;
+//   for(var i = 0; i < length; i++){
+//     let tweet = "https://twitter.com/statuses/" + data["statuses"][i]['id_str'];
+//     tweets.push(tweet);
+//   }
+//   console.log(tweets);
+// })
+T.get('search/tweets', { geocode:"" + map["Burruss Hall"][0] +"," +map["Burruss Hall"][1] + ",0.07mi", count: 100 }, locations);
+function locations(err, data, response){
+  if(err){
+    console.log("There was an error.");
+  } else{
+      let length = data["statuses"].length;
+      for(var i = 0; i < length; i++){
+        let tweet = "https://twitter.com/statuses/" + data["statuses"][i]['id_str'];
+        tweets.push(tweet);
+      }
+      console.log(tweets);
+  }
+}
+
 // T.get('geo/search', { lat:37.228719, long:-80.419415, granularity: "city", accuracy:"500ft" }, function(err, data, response) {
 //   console.log(data["result"]['places']);
 // })
