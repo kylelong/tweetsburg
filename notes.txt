@@ -1,1 +1,3 @@
 https://twitteroauth.com/
+Embed tweets: https://ctrlq.org/code/19933-embed-tweet-with-javascript
+https://stackoverflow.com/questions/1225130/how-can-i-align-text-directly-beneath-an-image
