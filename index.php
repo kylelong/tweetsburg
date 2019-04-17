@@ -44,14 +44,28 @@
 </head>
 <body>
 	<h3>Tweetsburg</h3>
-		<p id="tweet"> </p>
+	<p id="tweet"> </p>
 	<div>
-		<img src="moss.jpeg" height="300" width="300" id="Moss Art Center">
-		<img src="newman.png" height="300" width="300" id="Newman Library">
-		<img src="burruss.jpg" height="300" width="300" id="Burruss Hall"> <br>
-		<img src="pritchard.JPG" height="300" width="300" id="Pritchard Hall">
-		<img src="mccommas.jpg" height="300" width="300" id="McCommas Hall">
-		<img src="goodwin.jpg" height="300" width="300" id="Goodwin Hall">
+		<span class="img">
+			<img src="moss.jpeg" height="300" width="300" id="Moss Art Center">
+		</span>
+		<span>
+			<img src="newman.png" height="300" width="300" id="Newman Library">
+		</span>
+		<span>
+			<img src="burruss.jpg" height="300" width="300" id="Burruss Hall"> <br>
+		</span>
+		<span>
+			<img src="pritchard.JPG" height="300" width="300" id="Pritchard Hall">
+		</span>
+		<span>
+			<img src="mccommas.jpg" height="300" width="300" id="McCommas Hall">
+		</span>
+		<span>
+			
+			<img src="goodwin.jpg" height="300" width="300" id="Goodwin Hall">
+		</span>
+
 	</div>
 
 	<script type="text/javascript">
