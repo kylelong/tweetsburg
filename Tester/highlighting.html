@@ -24,7 +24,7 @@
 			
 			var renderer = new THREE.WebGLRenderer({ antialias: true });
 			renderer.setPixelRatio( window.devicePixelRatio );
-			renderer.setSize( window.innerWidth, window.innerHeight );
+			renderer.setSize( window.innerWidth / 2, window.innerHeight / 2 );
 			document.body.appendChild( renderer.domElement );
 			
 			camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 10000 );
@@ -58,8 +58,8 @@
 				// the following line would stop any other event handler from firing
 				// (such as the mouse's TrackballControls)
 				// update the mouse variable
-				mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-				mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+				mouse.x = (event.clientX / (window.innerWidth / 2)) * 2 - 1;
+				mouse.y = -(event.clientY / (window.innerHeight / 2)) * 2 + 1;
 			}
 			///////////////////////////////////////////////////////////
 			<!-- var geometry = new THREE.BoxGeometry( 1, 1, 1 ); -->
@@ -74,7 +74,7 @@
 			
 			var loader = new THREE.GLTFLoader();
 			
-			loader.load( 'tweetsburg-half.glb', function ( gltf ) {
+			loader.load( 'floor-tweetsburg-half.glb', function ( gltf ) {
 				model = gltf.scene;
 
 				console.log(model);
@@ -120,6 +120,8 @@
 						INTERSECTED.currentHex = INTERSECTED.material.color.getHex();
 						// set a new color for closest object
 						INTERSECTED.material.color.setHex( 0xffffff );
+						// set tweet panel to building name
+						console.log(INTERSECTED.name);
 					}
 				} else {
 					// restore previous intersection object (if it exists) to its original color

@@ -31,6 +31,7 @@ $statuses = $connection->get("search/tweets", ["geocode" => $geocode, "count"=> 
      }
    }
  }
+ //echo count($tweets);
 echo json_encode($tweets);
 
 ?>

@@ -1,3 +1,14 @@
 https://twitteroauth.com/
 Embed tweets: https://ctrlq.org/code/19933-embed-tweet-with-javascript
 https://stackoverflow.com/questions/1225130/how-can-i-align-text-directly-beneath-an-image
+Data analytic tab: Tweet patterns over last  7 days, top hashtags
+https://developer.twitter.com/en/docs/tweets/search/api-reference/get-search-tweets
+search/tweets
+http://blog.datumbox.com/how-to-build-your-own-twitter-sentiment-analysis-tool/
+Feedback: 
+color code buildings based on tweet intensity from that building
+having floating labels over the buildings would be a large asset to this project. 
+add non-building labels/illustrations for locations like the drillfield or duck pond to help users orient themselves.
+twitter animation
+the ability to filter and search through tweets in various ways. Another example is an activity over time graph for each building to
+show the various trends and hotspots on campus
