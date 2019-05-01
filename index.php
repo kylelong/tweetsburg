@@ -112,6 +112,8 @@
 			var highlightBox;
 			var projector, mouse = { x: 0, y: 0 }, INTERSECTED;
 			var model;
+
+			var clicking = false;
 			
 			var renderer = new THREE.WebGLRenderer({ antialias: true });
 			renderer.setPixelRatio( window.devicePixelRatio );
@@ -151,6 +153,17 @@
 				// update the mouse variable
 				mouse.x = (event.clientX / (window.innerWidth)) * 2 - 1;
 				mouse.y = -(event.clientY / (window.innerHeight)) * 2 + 1;
+			}
+			
+			///////////////////////////////////////////////////////////
+			document.addEventListener('mousedown', onDocumentMouseDown, false);
+			document.addEventListener('mouseup', onDocumentMouseUp, false);
+
+			function onDocumentMouseDown {
+				clicking = true;
+			}
+			function onDocumentMouseUp(event) {
+				clicking = false;
 			}
 			///////////////////////////////////////////////////////////
 			<!-- var geometry = new THREE.BoxGeometry( 1, 1, 1 ); -->
@@ -199,7 +212,7 @@
 				var intersects = ray.intersectObjects( model.children );
 	
 				// if there is one (or more) intersections
-				if ( intersects.length > 0) {
+				if (clicking && intersects.length > 0) {
 					// if the closest object intersected is not the currently stored intersection object
 					if ( intersects[ 0 ].object != INTERSECTED ) {
 						// restore previous intersection object (if it exists) to its original color
@@ -210,11 +223,12 @@
 						// store color of closest object (for later restoration)
 						INTERSECTED.currentHex = INTERSECTED.material.color.getHex();
 						// set a new color for closest object
-						INTERSECTED.material.color.setHex( 0xffffff );
+						INTERSECTED.material.color.setHex( 0x1da1f2 );
 						// set tweet panel to building name
-						var name = "Burruss Hall";
+						name = INTERSECTED.name;
+						// handle checking here?
 						populate(name);
-
+						
 					}
 				} else {
 					// restore previous intersection object (if it exists) to its original color
