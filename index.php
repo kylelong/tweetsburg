@@ -112,6 +112,8 @@
 			var highlightBox;
 			var projector, mouse = { x: 0, y: 0 }, INTERSECTED;
 			var model;
+
+			var clicking = false;
 			
 			var renderer = new THREE.WebGLRenderer({ antialias: true });
 			renderer.setPixelRatio( window.devicePixelRatio );
@@ -152,6 +154,17 @@
 				mouse.x = (event.clientX / (window.innerWidth)) * 2 - 1;
 				mouse.y = -(event.clientY / (window.innerHeight)) * 2 + 1;
 			}
+			
+			///////////////////////////////////////////////////////////
+			document.addEventListener('mousedown', onDocumentMouseDown, false);
+			document.addEventListener('mouseup', onDocumentMouseUp, false);
+
+			function onDocumentMouseDown(event) {
+				clicking = true;
+			}
+			function onDocumentMouseUp(event) {
+				clicking = false;
+			}
 			///////////////////////////////////////////////////////////
 			<!-- var geometry = new THREE.BoxGeometry( 1, 1, 1 ); -->
 			<!-- var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } ); -->
@@ -167,7 +180,6 @@
 			
 			loader.load( 'Tester/floor-tweetsburg-half.glb', function ( gltf ) {
 				model = gltf.scene;
-
 				console.log(model);
 				scene.add( model );
 			}, undefined, function ( error ) {
@@ -199,22 +211,23 @@
 				var intersects = ray.intersectObjects( model.children );
 	
 				// if there is one (or more) intersections
-				if ( intersects.length > 0) {
+				if (clicking && intersects.length > 0) {
 					// if the closest object intersected is not the currently stored intersection object
 					if ( intersects[ 0 ].object != INTERSECTED ) {
 						// restore previous intersection object (if it exists) to its original color
-						if ( INTERSECTED ) 
+						if ( INTERSECTED && INTERSECTED.name != "Plane") 
 							INTERSECTED.material.color.setHex( INTERSECTED.currentHex );
 						// store reference to closest object as current intersection object
 						INTERSECTED = intersects[ 0 ].object;
 						// store color of closest object (for later restoration)
 						INTERSECTED.currentHex = INTERSECTED.material.color.getHex();
 						// set a new color for closest object
-						INTERSECTED.material.color.setHex( 0xffffff );
+						INTERSECTED.material.color.setHex( 0x1da1f2 );
 						// set tweet panel to building name
-						var name = "Burruss Hall";
+						name = INTERSECTED.name;
+						// handle checking here?
 						populate(name);
-
+						
 					}
 				} else {
 					// restore previous intersection object (if it exists) to its original color
