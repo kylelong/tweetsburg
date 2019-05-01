@@ -165,7 +165,7 @@
 			
 			var loader = new THREE.GLTFLoader();
 			
-			loader.load( 'Tester/floor-tweetsburg-half.glb', function ( gltf ) {
+			loader.load( 'tweetsburg-complete.glb', function ( gltf ) {
 				model = gltf.scene;
 
 				console.log(model);
