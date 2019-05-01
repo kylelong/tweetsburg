@@ -159,7 +159,7 @@
 			document.addEventListener('mousedown', onDocumentMouseDown, false);
 			document.addEventListener('mouseup', onDocumentMouseUp, false);
 
-			function onDocumentMouseDown {
+			function onDocumentMouseDown(event) {
 				clicking = true;
 			}
 			function onDocumentMouseUp(event) {
@@ -180,7 +180,6 @@
 			
 			loader.load( 'Tester/floor-tweetsburg-half.glb', function ( gltf ) {
 				model = gltf.scene;
-
 				console.log(model);
 				scene.add( model );
 			}, undefined, function ( error ) {
@@ -216,7 +215,7 @@
 					// if the closest object intersected is not the currently stored intersection object
 					if ( intersects[ 0 ].object != INTERSECTED ) {
 						// restore previous intersection object (if it exists) to its original color
-						if ( INTERSECTED ) 
+						if ( INTERSECTED && INTERSECTED.name != "Plane") 
 							INTERSECTED.material.color.setHex( INTERSECTED.currentHex );
 						// store reference to closest object as current intersection object
 						INTERSECTED = intersects[ 0 ].object;
