@@ -51,7 +51,7 @@
 <body>
 		<!-- <h3>Tweetsburg</h3> -->
 	<p id="tweet"> </p> 
-	</div> -->
+	</div>
 	<div id="tweets">
 		
 	</div>
@@ -159,7 +159,7 @@
 			document.addEventListener('mousedown', onDocumentMouseDown, false);
 			document.addEventListener('mouseup', onDocumentMouseUp, false);
 
-			function onDocumentMouseDown {
+			function onDocumentMouseDown(event) {
 				clicking = true;
 			}
 			function onDocumentMouseUp(event) {
@@ -225,7 +225,8 @@
 						// set a new color for closest object
 						INTERSECTED.material.color.setHex( 0x1da1f2 );
 						// set tweet panel to building name
-						name = INTERSECTED.name;
+						//name = INTERSECTED.name;
+						name = "Burruss Hall";
 						// handle checking here?
 						populate(name);
 						
