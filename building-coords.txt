@@ -19,7 +19,7 @@
 "moss_arts_center"=> array("37.231865", "-80.418103"),
 "newman_library"=> array("37.228719", "-80.419415"),
 "henderson"=> array("", ""),
-"theater_"=> array("", ""),
+"theater_101"=> array("", ""),
 "bookstore"=> array("37.228157", "-80.418614"),
 "graduate_life_center"=> array("37.228245", "-80.417549"),
 "architecture_annex"=> array("", ""),
