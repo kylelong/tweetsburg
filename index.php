@@ -1,3 +1,4 @@
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +23,6 @@
 	#tweet {
 		width: 400px !important;
 	}
-
 	#tweet iframe {
 		border: none !important;
 		box-shadow: none !important;
@@ -45,13 +45,12 @@
 		left: 38%;
 		top: -30px;
 	}
-
 </style>
 </head>
 <body>
 		<!-- <h3>Tweetsburg</h3> -->
 	<p id="tweet"> </p> 
-	</div> -->
+	</div>
 	<div id="tweets">
 		
 	</div>
@@ -88,11 +87,8 @@
 					}
 					list.append("</ul>");
 					var tweets = jQuery(".tweet");
-
 					jQuery(tweets).each( function( t, tweet ) { 
-
 						var id = jQuery(this).attr('id');
-
 						twttr.widgets.createTweet(
 							id, tweet, 
 							{
@@ -101,7 +97,6 @@
         linkColor    : '#cc0000', // default is blue
         theme        : 'light'    // or dark
     });
-
 					});
 				}
 			});
@@ -112,7 +107,6 @@
 			var highlightBox;
 			var projector, mouse = { x: 0, y: 0 }, INTERSECTED;
 			var model;
-
 			var clicking = false;
 			
 			var renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -124,7 +118,6 @@
 			camera.position.set( 5, 5, 0 );
 			
 			controls = new THREE.OrbitControls( camera, renderer.domElement );
-
 			//controls.addEventListener( 'change', render ); // call this only in static scenes (i.e., if there is no animation loop)
 			controls.enableDamping = false; // an animation loop is required when either damping or auto-rotation are enabled
 			controls.dampingFactor = 0.25;
@@ -146,7 +139,6 @@
 			
 			// when the mouse moves, call the given function
 			document.addEventListener('mousemove', onDocumentMouseMove, false);
-
 			function onDocumentMouseMove(event) {
 				// the following line would stop any other event handler from firing
 				// (such as the mouse's TrackballControls)
@@ -158,7 +150,6 @@
 			///////////////////////////////////////////////////////////
 			document.addEventListener('mousedown', onDocumentMouseDown, false);
 			document.addEventListener('mouseup', onDocumentMouseUp, false);
-
 			function onDocumentMouseDown(event) {
 				clicking = true;
 			}
@@ -178,7 +169,7 @@
 			
 			var loader = new THREE.GLTFLoader();
 			
-			loader.load( 'Tester/floor-tweetsburg-half.glb', function ( gltf ) {
+			loader.load( 'tweetsburg-complete.glb', function ( gltf ) {
 				model = gltf.scene;
 				console.log(model);
 				scene.add( model );
@@ -187,7 +178,6 @@
 			} );
 			
 			console.log(scene);
-
 			function animate() {
 				requestAnimationFrame( animate );
 				render();
@@ -206,7 +196,6 @@
 				var vector = new THREE.Vector3( mouse.x, mouse.y, 1 );
 				projector.unprojectVector( vector, camera );
 				var ray = new THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
-
 				// create an array containing all objects in the scene with which the ray intersects
 				var intersects = ray.intersectObjects( model.children );
 	
@@ -215,7 +204,7 @@
 					// if the closest object intersected is not the currently stored intersection object
 					if ( intersects[ 0 ].object != INTERSECTED ) {
 						// restore previous intersection object (if it exists) to its original color
-						if ( INTERSECTED && INTERSECTED.name != "Plane") 
+						if ( INTERSECTED) 
 							INTERSECTED.material.color.setHex( INTERSECTED.currentHex );
 						// store reference to closest object as current intersection object
 						INTERSECTED = intersects[ 0 ].object;
@@ -226,6 +215,7 @@
 						// set tweet panel to building name
 						name = INTERSECTED.name;
 						// handle checking here?
+						console.log(name);
 						populate(name);
 						
 					}
@@ -247,3 +237,4 @@
 
 </body>
 </html>
+
