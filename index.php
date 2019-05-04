@@ -27,16 +27,25 @@
 		border: none !important;
 		box-shadow: none !important;
 	}
-	ul{
-		list-style: none;
+	ul::-webkit-scrollbar { width: 0 !important }
+	body{
+    overflow: hidden;
 	}
 	ul{
 		height: 90%;
 		width: 500px;
 		overflow: scroll;
 		position: absolute;
+	   list-style: none;
 		left: 65%;
 		top: 30px;
+
+	}
+	#text{
+		font-family: "Helvetica Neue";
+		color: white;
+		text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+		font-size: 20px;
 	}
 	#tweet{
 		font-family: 'Open Sans', sans-serif;
@@ -49,10 +58,8 @@
 </head>
 <body>
 	<!-- <h3>Tweetsburg</h3> -->
-	<p id="tweet"> </p> 
-</div>
+	<!-- <p id="tweet"> </p>  -->
 <div id="tweets">
-
 </div>
 
 <script src="https://threejs.org/build/three.min.js"></script>
@@ -175,7 +182,7 @@
 					"lane_stadium": "Lane Stadium",
 					"hahn_practice_center": "Hahn Practice Center",
 					"cassell_coliseum": "Cassell Coliseum",
-					"drillfield": "Drillfiled",
+					"drillfield": "Drillfield",
 					"merryman": "Merryman",
 					"baseball_field": "English Field at Union Park",
 					"softball_field": "Softball Park",
@@ -185,13 +192,13 @@
 					"robeson": "Robeson Hall",
 					"agnew": "Agnew Hall"};
 					if(data.length == 0){
-						text = "No tweets are available from " + id + " at the moment.";
+						text = "No tweets are available from " + map[id] + " at the moment.";
 					}else{
 						text = "Tweets from " + map[id] + ".";
 					}
 					$("ul").empty();
 					var list = $("<ul id='list'>").appendTo('#tweets');
-					list.append("<li>" + text + "</li>");
+					list.append("<li id='text'>" + text + "</li>");
 					for(var i = 0; i < data.length; i++){
 						var link = '<a href="'+data[i]+'" target="_blank">'+data[i]+'</a>';
 						var div = '<div class="tweet" id=' + data[i] + ">" +'</div>';
@@ -240,10 +247,10 @@ controls = new THREE.OrbitControls( camera, renderer.domElement );
 			
 			var scene = new THREE.Scene();
 			scene.background = new THREE.Color( 0xffffff );
-			scene.add( new THREE.AmbientLight( 0x555555 ) );
+			scene.add( new THREE.AmbientLight( 0x404040) );
 			
-			var light = new THREE.SpotLight( 0xffffff, 1.5 );
-			light.position.set( 0, 500, 1000 );
+			var light = new THREE.DirectionalLight( 0xffffff, 3 );
+			light.position.set( 0, 50, 0 );
 			scene.add( light );
 			
 			// initialize object to perform world/screen calculations
@@ -281,7 +288,7 @@ controls = new THREE.OrbitControls( camera, renderer.domElement );
 			
 			var loader = new THREE.GLTFLoader();
 			
-			loader.load( 'tweetsburg-with-plane.glb', function ( gltf ) {
+			loader.load( 'tweetsburg-color.glb', function ( gltf ) {
 				model = gltf.scene;
 				console.log(model);
 				scene.add( model );
