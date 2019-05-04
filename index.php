@@ -211,13 +211,14 @@
 						// store color of closest object (for later restoration)
 						INTERSECTED.currentHex = INTERSECTED.material.color.getHex();
 						// set a new color for closest object
-						INTERSECTED.material.color.setHex( 0x1da1f2 );
-						// set tweet panel to building name
-						name = INTERSECTED.name;
-						// handle checking here?
-						console.log(name);
-						populate(name);
-						
+						if (INTERSECTED.name != "Plane") {
+							INTERSECTED.material.color.setHex( 0x1da1f2 );
+							// set tweet panel to building name
+							name = INTERSECTED.name;
+							// handle checking here?
+							console.log(name);
+							populate(name);
+						}						
 					}
 				} else {
 					// restore previous intersection object (if it exists) to its original color
