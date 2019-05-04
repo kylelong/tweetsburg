@@ -169,7 +169,7 @@
 			
 			var loader = new THREE.GLTFLoader();
 			
-			loader.load( 'tweetsburg-complete.glb', function ( gltf ) {
+			loader.load( 'tweetsburg-with-plane.glb', function ( gltf ) {
 				model = gltf.scene;
 				console.log(model);
 				scene.add( model );
