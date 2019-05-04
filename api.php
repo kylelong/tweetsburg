@@ -7,7 +7,7 @@ $access_token_secret = "jtpYC3cP8OWjznMxIqRvH71vgUwa0SB0zn2Z4D8SAuigv";
 use Abraham\TwitterOAuth\TwitterOAuth;
 $connection = new TwitterOAuth(CONSUMER_KEY, CONSUMER_SECRET, $access_token, $access_token_secret);
 $content = $connection->get("account/verify_credentials");
-$count = 20;
+$count = 50;
 // $_GET["location"] = "Newman Library";
 $locations = array(
                     "vet_school"=> array("", ""),
