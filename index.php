@@ -108,6 +108,8 @@
 			var projector, mouse = { x: 0, y: 0 }, INTERSECTED;
 			var model;
 			var clicking = false;
+			var click = false;
+			var scope = this;
 			
 			var renderer = new THREE.WebGLRenderer({ antialias: true });
 			renderer.setPixelRatio( window.devicePixelRatio );
@@ -151,9 +153,16 @@
 			document.addEventListener('mousedown', onDocumentMouseDown, false);
 			document.addEventListener('mouseup', onDocumentMouseUp, false);
 			function onDocumentMouseDown(event) {
-				clicking = true;
+				if (event.button == scope.mouseButtons.LEFT)
+				if (clicking == false) {
+					click = true;
+					clicking = true;
+				} else {
+					click = false;
+				}
 			}
 			function onDocumentMouseUp(event) {
+				click = false;
 				clicking = false;
 			}
 			///////////////////////////////////////////////////////////
@@ -200,26 +209,32 @@
 				var intersects = ray.intersectObjects( model.children );
 	
 				// if there is one (or more) intersections
-				if (clicking && intersects.length > 0) {
-					// if the closest object intersected is not the currently stored intersection object
-					if ( intersects[ 0 ].object != INTERSECTED ) {
-						// restore previous intersection object (if it exists) to its original color
-						if ( INTERSECTED) 
-							INTERSECTED.material.color.setHex( INTERSECTED.currentHex );
-						// store reference to closest object as current intersection object
-						INTERSECTED = intersects[ 0 ].object;
-						// store color of closest object (for later restoration)
-						INTERSECTED.currentHex = INTERSECTED.material.color.getHex();
-						// set a new color for closest object
-						if (INTERSECTED.name != "Plane") {
-							INTERSECTED.material.color.setHex( 0x1da1f2 );
-							// set tweet panel to building name
-							name = INTERSECTED.name;
-							// handle checking here?
-							console.log(name);
-							populate(name);
-						}						
+				if (intersects.length > 0) {
+					if (click) {
+						// if the closest object intersected is not the currently stored intersection object
+						if ( intersects[ 0 ].object != INTERSECTED ) {
+							// restore previous intersection object (if it exists) to its original color
+							if ( INTERSECTED) 
+								INTERSECTED.material.color.setHex( INTERSECTED.currentHex );
+							// store reference to closest object as current intersection object
+							INTERSECTED = intersects[ 0 ].object;
+							// store color of closest object (for later restoration)
+							INTERSECTED.currentHex = INTERSECTED.material.color.getHex();
+							// set a new color for closest object
+							if (INTERSECTED.name != "Plane") {
+								INTERSECTED.material.color.setHex( 0x1da1f2 );
+								// set tweet panel to building name
+								name = INTERSECTED.name;
+								// handle checking here?
+								console.log(name);
+								populate(name);
+							}						
+						}
+					} else {
+						// hovering
+						// updateHoverText(intersects[0].object.name) // sets the hover text to the current name
 					}
+					
 				} else {
 					// restore previous intersection object (if it exists) to its original color
 					if ( INTERSECTED ) 
